@@ -1,0 +1,11 @@
+[data-toggle='collapse'] {
+  cursor: pointer;
+}
+
+#accordion .card {
+  border: none;
+}
+
+#accordion .card-header:first-child {
+  border-radius: 0;
+}

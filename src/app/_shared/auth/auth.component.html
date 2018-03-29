@@ -1,0 +1,164 @@
+<div id="accordion">
+  <div class="card">
+    <div class="card-header bg-primary text-light" id="headingLogin" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="true"
+      aria-controls="collapseLogin">
+      <h4>Login</h4>
+    </div>
+    <div id="collapseLogin" class="collapse show" aria-labelledby="headingLogin" data-parent="#accordion">
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="email">
+              <span class="text-danger">
+                <i class="fa fa-asterisk"></i>
+              </span> Email</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="email-addon">
+                  <i class="fa fa-at"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': loginForm.controls.email.invalid && loginForm.controls.email.dirty, 'is-valid': loginForm.controls.email.valid && loginForm.controls.email.dirty }"
+                id="email" name="email" formControlName="email" autocomplete="off" placeholder="john.doe@company.com" aria-label="Email"
+                aria-describedby="email-addon">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">
+              <span class="text-danger">
+                <i class="fa fa-asterisk"></i>
+              </span> Password</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="password-addon">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+              <input type="password" class="form-control" [ngClass]="{ 'is-invalid': loginForm.controls.password.invalid && loginForm.controls.password.dirty, 'is-valid': loginForm.controls.password.valid && loginForm.controls.password.dirty }"
+                id="password" formControlName="password" name="password" aria-label="Password" aria-describedby="password-addon">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember" formControlName="remember">
+                <label class="form-check-label" for="remember">Remember Me</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <button class="btn float-right" type="submit" [ngClass]="{ 'btn-outline-success': loginForm.valid, 'btn-outline-secondary': loginForm.invalid }"
+                [disabled]="loginForm.invalid">
+                <i class="fa fa-check"></i> Login
+              </button>
+            </div>
+          </div>
+        </form>
+        <br>
+        <p class="text-center">
+          <a href="#" (click)="forgotPassword()">Forgot Password?</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header bg-dark text-light" id="headingSignup" data-toggle="collapse" data-target="#collapseSignup" aria-expanded="true"
+      aria-controls="collapseSignup">
+      <h6>Sign Up!
+        <small>If you don't have an account yet.</small>
+      </h6>
+    </div>
+    <div id="collapseSignup" class="collapse" aria-labelledby="headingSignup" data-parent="#accordion">
+      <div class="card-body">
+        <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+          <fieldset formGroupName="name">
+            <label for="firstname">
+              <span class="text-danger">
+                <i class="fa fa-asterisk"></i>
+              </span> Name</label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" [ngClass]="{ 'is-invalid': signupForm.controls.name.controls.first.invalid && signupForm.controls.name.controls.first.dirty, 'is-valid': signupForm.controls.name.controls.first.valid && signupForm.controls.name.controls.first.dirty }"
+                    name="firstname" formControlName="first" placeholder="John">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" [ngClass]="{ 'is-invalid': signupForm.controls.name.controls.last.invalid && signupForm.controls.name.controls.last.dirty, 'is-valid': signupForm.controls.name.controls.last.valid && signupForm.controls.name.controls.last.dirty }"
+                    name="lastname" formControlName="last" placeholder="Doe">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="email">
+              <span class="text-danger">
+                <i class="fa fa-asterisk"></i>
+              </span> Email</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="email-addon">
+                  <i class="fa fa-at"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': signupForm.controls.email.invalid && signupForm.controls.email.dirty, 'is-valid': signupForm.controls.email.valid && signupForm.controls.email.dirty }"
+                id="signup-email" name="email" formControlName="email" autocomplete="off" placeholder="john.doe@company.com"
+                aria-label="Email" aria-describedby="email-addon">
+            </div>
+          </div>
+
+          <fieldset formGroupName="passwords">
+            <div class="form-group">
+              <label for="password">
+                <span class="text-danger">
+                  <i class="fa fa-asterisk"></i>
+                </span> Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="password-addon">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+                <input type="password" class="form-control" [ngClass]="{ 'is-invalid': passwordsGroup.controls.password.dirty && (passwordsGroup.controls.password.invalid || passwordsGroup.invalid), 'is-valid': passwordsGroup.controls.password.dirty && (passwordsGroup.controls.password.valid || passwordsGroup.valid) }"
+                  id="signup-password" formControlName="password" name="password" aria-label="Password" aria-describedby="password-addon">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">
+                <span class="text-danger">
+                  <i class="fa fa-asterisk"></i>
+                </span> Confirm Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="confirmPassword-addon">
+                    <i class="fa fa-thumbs-up"></i>
+                  </span>
+                </div>
+                <input type="password" class="form-control" [ngClass]="{ 'is-invalid': passwordsGroup.controls.confirmPassword.dirty && (passwordsGroup.controls.confirmPassword.invalid || passwordsGroup.invalid), 'is-valid': passwordsGroup.controls.confirmPassword.dirty && (passwordsGroup.controls.confirmPassword.valid || passwordsGroup.valid) }"
+                  id="confirmPassword" formControlName="confirmPassword" name="confirmPassword" aria-label="Password" aria-describedby="confirmPassword-addon">
+              </div>
+            </div>
+
+            <div class="alert" [ngClass]="{ 'alert-danger': signupForm.dirty && signupForm.invalid }" role="alert" id="signup-message"
+              [hidden]="signupForm.pristine || passwordsGroup.valid">
+              <span [hidden]="!(passwordsGroup.errors && passwordsGroup.errors.passwordMismatch)">
+                <strong>
+                  <i class="fa fa-frown"></i> Password Mismatch!</strong> Both passwords do not match.
+              </span>
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn float-right" type="submit" [ngClass]="{ 'btn-outline-success': signupForm.valid, 'btn-outline-secondary': signupForm.invalid }"
+                [disabled]="signupForm.invalid">
+                <i class="fa fa-clipboard-check"></i> Sign Up
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
